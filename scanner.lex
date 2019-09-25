@@ -1,7 +1,13 @@
+// scanner.lex
+/* Definitions */
+
 %{
+//  #include <iostream>
+  using namespace std;
   extern "C" int yylex();
   #include "parser.tab.c"  // to get the token types from Bison
 %}
+
 
 %%
 [0-9]+        { yylval.intVal = atoi(yytext); return INTEGER_LITERAL; }
@@ -12,4 +18,3 @@
 "/"           { return DIV; }
 ";"           { return SEMI; }
 [ \t\r\n\f]   ; /* ignore whitespace */
-
